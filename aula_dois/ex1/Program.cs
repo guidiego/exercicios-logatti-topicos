@@ -1,30 +1,27 @@
 ﻿using System;
+using utils;
 
 namespace ex1 {
     class Program {
         static void Main(String[] args) {
-            System.Console.WriteLine("Quantos anos você tem?");
-            var years = Program.readInt();
+            Console.WriteLine("Quantos anos você tem?");
+            var years = ConsoleWrapper.ReadInt();
 
-            System.Console.WriteLine("Quantos meses a mais da sua idade?");
-            var months = Program.readInt();
+            Console.WriteLine("Quantos meses a mais da sua idade?");
+            var months = ConsoleWrapper.ReadInt();
 
-            System.Console.WriteLine("E dias?");
-            var days = Program.readInt();
+            Console.WriteLine("E dias?");
+            var days = ConsoleWrapper.ReadInt();
 
-            System.Console.WriteLine(
+            Console.WriteLine(
                 "Você tem {0} dias de vida!",
                 Program.getAgeInDays(years, months, days)
             );
         }
 
-        static int readInt() {
-            return System.Convert.ToInt32(System.Console.ReadLine());
-        }
-
         static int getAgeInDays(int years, int months, int days) {
-            var actualDate = System.DateTime.Now;
-            var agentDate = System.DateTime.Now
+            var actualDate = DateTime.Now;
+            var agentDate = DateTime.Now
                             .AddDays(-days)
                             .AddYears(-years)
                             .AddMonths(-months);
