@@ -1,30 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using utils;
 
 namespace ex1 {
     class Program {
+        public static String yearProp = "years";
+        public static String monthProp = "months";
+        public static String daysProp = "days";
+
         static void Main(String[] args) {
-            Console.WriteLine("Quantos anos você tem?");
-            var years = ConsoleWrapper.ReadInt();
+            var questions = new Dictionary<String, String>();
 
-            Console.WriteLine("Quantos meses a mais da sua idade?");
-            var months = ConsoleWrapper.ReadInt();
-
-            Console.WriteLine("E dias?");
-            var days = ConsoleWrapper.ReadInt();
+            questions[Program.yearProp] = "Quantos anos você tem?";
+            questions[Program.monthProp] = "Quantos meses a mais da sua idade?";
+            questions[Program.daysProp] = "E dias?";
 
             Console.WriteLine(
                 "Você tem {0} dias de vida!",
-                Program.getAgeInDays(years, months, days)
+                Program.getAgeInDays(Form.ask(questions))
             );
         }
 
-        static int getAgeInDays(int years, int months, int days) {
+        static int getAgeInDays(Dictionary<String, String> data) {
+            var years = Convert.ToInt32(data[Program.yearProp]);
+            var months = Convert.ToInt32(data[Program.monthProp]);
+            var days = Convert.ToInt32(data[Program.daysProp]);
+
             var actualDate = DateTime.Now;
             var agentDate = DateTime.Now
-                            .AddDays(-days)
                             .AddYears(-years)
-                            .AddMonths(-months);
+                            .AddMonths(-months)
+                            .AddDays(-days);
 
             return actualDate.Subtract(agentDate).Days;
         }
