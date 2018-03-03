@@ -14,10 +14,8 @@ namespace ex7 {
             form.add("Insira o numero 2", "2");
             form.add("Insira o numero 3", "3");
 
-            List<int> data = new List<int>();
-            foreach(KeyValuePair<string, string> entry in form.ask()) {
-                data.Add(Convert.ToInt32(entry.Value));
-            }
+            List<int> data = ListHelper.ToIntList(form.ask());
+            data.Sort((a, b) => -1* a.CompareTo(b));
 
             Console.WriteLine(
                 "O maior valor da lista é {0}",
