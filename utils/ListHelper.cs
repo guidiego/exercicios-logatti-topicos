@@ -21,6 +21,15 @@ namespace utils {
             return total;
         }
 
+        public static List<int> GetIntListByProp(List<Dictionary<String, String>> listData, String prop) {
+            List<int> list = new List<int>();
+            foreach(Dictionary<String, String> data in listData) {
+                list.Add(Convert.ToInt32(data[prop]));
+            }
+
+            return list;
+        }
+
         public static List<int> Desc(List<int> values) {
             values.Sort((a, b) => -1* a.CompareTo(b));
             return values;
