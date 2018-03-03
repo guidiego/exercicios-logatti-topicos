@@ -20,5 +20,10 @@ namespace utils {
 
             return total;
         }
+
+        public static List<int> Desc(List<int> values) {
+            values.Sort((a, b) => -1* a.CompareTo(b));
+            return values;
+        }
     }
 }
